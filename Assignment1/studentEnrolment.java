@@ -5,6 +5,12 @@ import java.util.ArrayList;
 
 public class studentEnrolment {
     private Students student;
-    private Courses classes;
-    private ArrayList<Students> studentList;
+    private Courses course;
+    private String Semester;
+
+    public studentEnrolment(Students student, Courses course, String semester) {
+        this.student = student;
+        this.course = course;
+        Semester = semester;
+    }
 }
