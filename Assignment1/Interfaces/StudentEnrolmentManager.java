@@ -3,7 +3,7 @@ import Assgn1FurtherProg.Assignment1.Models.Students;
 
 /** Creating a public interface to define all available functionalities **/
 
-public interface studentEnrolmentManager {
+public interface StudentEnrolmentManager {
 
     public void addStudent(Students student);
 

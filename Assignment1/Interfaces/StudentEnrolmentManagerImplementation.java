@@ -2,7 +2,7 @@ package Assgn1FurtherProg.Assignment1.Interfaces;
 
 import Assgn1FurtherProg.Assignment1.Models.Students;
 
-public class Functionalities implements studentEnrolmentManager{
+public class StudentEnrolmentManagerImplementation implements StudentEnrolmentManager{
 
     @Override
     public void addStudent(Students student) {
