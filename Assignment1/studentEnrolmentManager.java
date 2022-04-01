@@ -1,6 +1,7 @@
 package Assignment1;
 
 public interface studentEnrolmentManager {
+
     public void add(Students student);
 
     public void update(Students student);
