@@ -19,15 +19,31 @@ public class studentEnrolment {
         return student;
     }
 
+    public void setStudent(Students student) {
+        this.student = student;
+    }
+
     public Courses getCourse() {
         return course;
+    }
+
+    public void setCourse(Courses course) {
+        this.course = course;
     }
 
     public String getSemester() {
         return semester;
     }
 
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
     public ArrayList<Students> getStudentEnrolmentList() {
         return studentEnrolmentList;
+    }
+
+    public void setStudentEnrolmentList(ArrayList<Students> studentEnrolmentList) {
+        this.studentEnrolmentList = studentEnrolmentList;
     }
 }

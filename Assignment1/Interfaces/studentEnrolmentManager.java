@@ -1,6 +1,8 @@
 package Assgn1FurtherProg.Assignment1.Interfaces;
 import Assgn1FurtherProg.Assignment1.Models.Students;
 
+/** Creating a public interface to define all available functionalities **/
+
 public interface studentEnrolmentManager {
 
     public void addStudent(Students student);
