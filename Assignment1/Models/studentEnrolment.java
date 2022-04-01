@@ -1,4 +1,4 @@
-package Assignment1;
+package Assgn1FurtherProg.Assignment1.Models;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

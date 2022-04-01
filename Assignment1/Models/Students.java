@@ -1,4 +1,4 @@
-package Assignment1;
+package Assgn1FurtherProg.Assignment1.Models;
 
 public class Students {
     private String studentName;
