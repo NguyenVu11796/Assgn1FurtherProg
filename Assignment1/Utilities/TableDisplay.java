@@ -2,86 +2,101 @@ package Assgn1FurtherProg.Assignment1.Utilities;
 
 import java.util.*;
 
+/**
+ * Class TableDisplay is for creating the outline of the table format
+ * to be implemented for displaying lists of students of courses
+ */
 public class TableDisplay {
+    //Attributes
+    private static final String horizontalLine = "-";
+    private String verticalLine = "|";
+    private String jointPoint = "+";
+    private String[] headers;
+    private List<String[]> rows = new ArrayList<>();
+    private boolean rightAlign;
 
-    public class CommandLineTable {
-        private static final String HORIZONTAL_SEP = "-";
-        private String verticalSep;
-        private String joinSep;
-        private String[] headers;
-        private List<String[]> rows = new ArrayList<>();
-        private boolean rightAlign;
+    // Methods
+    /**
+     * Set the headers for the table.
+     * @param headers the headers of the table.
+     */
+    public void setHeaders(String... headers) {
+        this.headers = headers;
+    }
 
-        public CommandLineTable() {
-            setShowVerticalLines(false);
-        }
+    /**
+     * Add the table row.
+     * @param cells the cells of the table.
+     */
+    public void addRow(String... cells) {
+        rows.add(cells);
+    }
 
-        public void setRightAlign(boolean rightAlign) {
-            this.rightAlign = rightAlign;
-        }
+    public void setRightAlign(boolean rightAlign) {
+        this.rightAlign = rightAlign;
+    }
 
-        public void setShowVerticalLines(boolean showVerticalLines) {
-            verticalSep = showVerticalLines ? "|" : "";
-            joinSep = showVerticalLines ? "+" : " ";
-        }
+    public void setShowVerticalLines(boolean showVerticalLines) {
+        verticalLine = showVerticalLines ? "|" : "";
+        jointPoint = showVerticalLines ? "+" : " ";
+    }
 
-        public void setHeaders(String... headers) {
-            this.headers = headers;
-        }
+    /**
+     * Print out the entire table
+     */
+    public void print() {
+        int[] maxWidths = headers != null ?
+                Arrays.stream(headers).mapToInt(String::length).toArray() : null;
 
-        public void addRow(String... cells) {
-            rows.add(cells);
-        }
-
-        public void print() {
-            int[] maxWidths = headers != null ?
-                    Arrays.stream(headers).mapToInt(String::length).toArray() : null;
-
-            for (String[] cells : rows) {
-                if (maxWidths == null) {
-                    maxWidths = new int[cells.length];
-                }
-                if (cells.length != maxWidths.length) {
-                    throw new IllegalArgumentException("Number of row-cells and headers should be consistent");
-                }
-                for (int i = 0; i < cells.length; i++) {
-                    maxWidths[i] = Math.max(maxWidths[i], cells[i].length());
-                }
+        for (String[] cells : rows) {
+            if (maxWidths == null) {
+                maxWidths = new int[cells.length];
             }
-
-            if (headers != null) {
-                printLine(maxWidths);
-                printRow(headers, maxWidths);
-                printLine(maxWidths);
+            // check if the number of cells and that of headers are the same. Throw error message if not.
+            if (cells.length != maxWidths.length) {
+                throw new IllegalArgumentException("Numbers of row-cells and headers should be the same");
             }
-            for (String[] cells : rows) {
-                printRow(cells, maxWidths);
-            }
-            if (headers != null) {
-                printLine(maxWidths);
-            }
-        }
-
-        private void printLine(int[] columnWidths) {
-            for (int i = 0; i < columnWidths.length; i++) {
-                String line = String.join("", Collections.nCopies(columnWidths[i] +
-                        verticalSep.length() + 1, HORIZONTAL_SEP));
-                System.out.print(joinSep + line + (i == columnWidths.length - 1 ? joinSep : ""));
-            }
-            System.out.println();
-        }
-
-        private void printRow(String[] cells, int[] maxWidths) {
             for (int i = 0; i < cells.length; i++) {
-                String s = cells[i];
-                String verStrTemp = i == cells.length - 1 ? verticalSep : "";
-                if (rightAlign) {
-                    System.out.printf("%s %" + maxWidths[i] + "s %s", verticalSep, s, verStrTemp);
-                } else {
-                    System.out.printf("%s %-" + maxWidths[i] + "s %s", verticalSep, s, verStrTemp);
-                }
+                maxWidths[i] = Math.max(maxWidths[i], cells[i].length());
             }
-            System.out.println();
         }
+        //if there are headers, print them out
+        if (headers != null) {
+            printLine(maxWidths);
+            printRow(headers, maxWidths);
+            printLine(maxWidths);
+        }
+        for (String[] cells : rows) {
+            printRow(cells, maxWidths);
+        }
+        if (headers != null) {
+            printLine(maxWidths);
+        }
+    }
+
+    /**
+     * Print out the rows of the table
+     * @param columnWidths: widths of the columns
+     */
+    private void printLine(int[] columnWidths) {
+        for (int i = 0; i < columnWidths.length; i++) {
+            String line = String.join("", Collections.nCopies(columnWidths[i] +
+                    verticalLine.length() + 1, horizontalLine));
+            System.out.print(jointPoint + line + (i == columnWidths.length - 1 ? jointPoint : ""));
+        }
+        System.out.println();
+    }
+
+    private void printRow(String[] cells, int[] maxWidths) {
+        for (int i = 0; i < cells.length; i++) {
+            String s = cells[i];
+            String verStrTemp = i == cells.length - 1 ? verticalLine : "";
+            if (rightAlign) {
+                System.out.printf("%s %" + maxWidths[i] + "s %s", verticalLine, s, verStrTemp);
+            } else {
+                System.out.printf("%s %-" + maxWidths[i] + "s %s", verticalLine, s, verStrTemp);
+            }
+        }
+        System.out.println();
     }
 }
