@@ -4,6 +4,7 @@ import Assgn1FurtherProg.Assignment1.Models.Courses;
 import Assgn1FurtherProg.Assignment1.Models.Students;
 import Assgn1FurtherProg.Assignment1.Models.studentEnrolment;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -53,6 +54,38 @@ public class Validations {
     public static boolean enrolmentAlreadyExists(studentEnrolment enrolment, ArrayList<studentEnrolment> enrolmentList) {
         for (studentEnrolment sE: enrolmentList) {
             if (sE.getStudent().equals(enrolment.getStudent()) && sE.getCourse().equals(enrolment.getCourse()) && sE.getSemester().equalsIgnoreCase(enrolment.getSemester())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 2) Validate user inputs
+
+    /**
+     * Checks if a student ID of the input student already in the student list
+     * @param studentID: studentID of the input student
+     * @param studentsArrayList: a list of Student objects
+     * @return true if student ID already exists, false otherwise
+     */
+    public static boolean isStudentIDAvail(String studentID, ArrayList<Students> studentsArrayList) {
+        for (Students st: studentsArrayList) {
+            if (st.getStudentID().equalsIgnoreCase(studentID)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if a courseID of input courses exists in the course list
+     * @param courseID: an ID of a Course
+     * @param coursesArrayList: a list of Course objects
+     * @return true if a courseID already exists, false otherwise
+     */
+    public static boolean isCourseIDAvail(String courseID, ArrayList<Courses> coursesArrayList) {
+        for (Courses c : coursesArrayList) {
+            if (c.getCourseID().equalsIgnoreCase(courseID)) {
                 return true;
             }
         }
