@@ -40,7 +40,7 @@ public class DataTabularDisplay {
         // Setup table
         table.setHeaders("Course ID", "Course name", "Credits");
         for (Courses course : courseResults) {
-            table.addRow(course.getCourseID(), course.getCourseName(), Integer.toString(c.getCredits()));
+            table.addRow(course.getCourseID(), course.getCourseName(), Integer.toString(course.getNumberOfCredits()));
         }
 
         // Print the table
@@ -57,7 +57,7 @@ public class DataTabularDisplay {
         // Setup table
         table.setHeaders("Student ID", "Student name", "Course ID", "Course name", "Semester");
         for (studentEnrolment sE : enrolmentResults) {
-            table.addRow(sE.getStudent().getStudentID(), sE.getStudent().getStudentName(), sE.getCourse().getCourseID(), e.getCourse().getCourseName(), e.getSemester());
+            table.addRow(sE.getStudent().getStudentID(), sE.getStudent().getStudentName(), sE.getCourse().getCourseID(), sE.getCourse().getCourseName(), sE.getSemester());
         }
 
         // Print the table
