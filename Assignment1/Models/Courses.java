@@ -1,11 +1,13 @@
 package Assgn1FurtherProg.Assignment1.Models;
 
-public class Courses {
+public class Courses implements Model{
+    //Attributes
     private String courseName;
     private String courseID;
-    private String numberOfCredits;
+    private int numberOfCredits;
 
-    public Courses(String courseName, String courseID, String numberOfCredits) {
+    //Constructors
+    public Courses(String courseName, String courseID, int numberOfCredits) {
         this.courseName = courseName;
         this.courseID = courseID;
         this.numberOfCredits = numberOfCredits;
@@ -19,10 +21,11 @@ public class Courses {
         return courseID;
     }
 
-    public String getNumberOfCredits() {
+    public int getNumberOfCredits() {
         return numberOfCredits;
     }
 
+    // To String method
     @Override
     public String toString() {
         return "Courses{" +
@@ -30,5 +33,15 @@ public class Courses {
                 ", courseID='" + courseID + '\'' +
                 ", numberOfCredits='" + numberOfCredits + '\'' +
                 '}';
+    }
+
+    // TO CSV STRING METHOD
+    /**
+     * Returns attributes of the object with commas to be appended to CSV file.
+     * @return the string of values joined with comma symbol.
+     */
+    @Override
+    public String toCSVString() {
+        return courseID + "," + courseName + "," + numberOfCredits + "\n";
     }
 }

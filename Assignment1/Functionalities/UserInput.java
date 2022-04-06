@@ -18,7 +18,10 @@ public class UserInput {
         while (true) {
             System.out.println("===========================================================================");
             System.out.print("\nEnter a student ID consisting of 's' and a series of numbers (e.g. s3881101): ");
+            studentID = input.nextLine().trim();
+            if (Validations.isStudentIDAvail(studentID, sem.getStudents()) || studentID.isEmpty()) {
 
+            }
         }
     }
 }
