@@ -45,22 +45,20 @@ public class TableDisplay {
      * Print out the entire table
      */
     public void print() {
-        int[] maxWidths = headers != null ?
-                Arrays.stream(headers).mapToInt(String::length).toArray() : null;
+        int[] maxWidths = headers != null ? Arrays.stream(headers).mapToInt(String::length).toArray() : null;
 
         for (String[] cells : rows) {
             if (maxWidths == null) {
                 maxWidths = new int[cells.length];
             }
-            // check if the number of cells and that of headers are the same. Throw error message if not.
             if (cells.length != maxWidths.length) {
-                throw new IllegalArgumentException("Numbers of row-cells and headers should be the same");
+                throw new IllegalArgumentException("Number of row-cells and headers should be consistent");
             }
             for (int i = 0; i < cells.length; i++) {
                 maxWidths[i] = Math.max(maxWidths[i], cells[i].length());
             }
         }
-        //if there are headers, print them out
+
         if (headers != null) {
             printLine(maxWidths);
             printRow(headers, maxWidths);
